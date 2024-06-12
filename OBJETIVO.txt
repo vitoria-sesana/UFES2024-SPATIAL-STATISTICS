@@ -1,0 +1,10 @@
+procurar uma base de dados com covariaveis espaciais
+
+verificar a correlação espacial entre as observações separadamente para as variaveis respostas e explicativas
+
+verificar 
+
+realizar regressão espacial
+
+indice de moran
+estimador bayesiano global e local
