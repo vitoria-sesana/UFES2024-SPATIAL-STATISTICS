@@ -1,0 +1,29 @@
+bases de dados
+
+https://dados.es.gov.br/organization/ijsn-instituto-jones-dos-santos-neves
+
+https://opendatasus.saude.gov.br/
+
+https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos
+
+https://www.ibge.gov.br/estatisticas/downloads-estatisticas.html
+
+
+estatistica espacial 
+
+https://rpubs.com/quarcs-lab/tutorial-spatial-regression
+
+https://crd230.github.io/lab8.html
+
+https://r-spatial.org/book/16-SpatialRegression.html
+
+# a variavel resposta tem correlação espacial????
+
+quantidade de meninas
+https://dados.es.gov.br/dataset/cadernos-da-juventude-09-gravidez-na-adolescencia/resource/fa5237a4-a71d-45ec-ba35-b2ff0b20e552
+
+ideb
+https://qedu.org.br/uf/32-espirito-santo/ideb/municipios
+
+idf
+
