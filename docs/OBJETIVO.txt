@@ -8,3 +8,23 @@ realizar regressão espacial
 
 indice de moran
 estimador bayesiano global e local
+
+
+--------------------------------------------------------
+
+
+modelo de regressão espacial
+
+qual é a fórmula do modelo?
+variável resposta? covariáveis?
+precisa de que para ter o modelo?
+o que vamos estimar e como?
+matriz de vizinhança 
+indice de moran 
+LISA?
+escolher as covariaveis
+
+
+--------------------------------------------------------
+# # espaço não necessariamente é geografico, pode ser com base na idade 
+# # correlação entre pontos que estão próximos ou distantes
