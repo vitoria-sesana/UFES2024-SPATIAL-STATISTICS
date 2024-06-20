@@ -1,0 +1,5 @@
+https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/h-how-spatial-autocorrelation-moran-s-i-spatial-st.htm
+
+https://analisemacro.com.br/data-science/analise-estatistica-espacial-no-r/
+
+livro: applied spatial data analysis with r pdf

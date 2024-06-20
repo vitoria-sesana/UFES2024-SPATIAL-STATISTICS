@@ -4,6 +4,7 @@ library(dplyr)
 library(ggplot2)
 
 
+# variável resposta -------------------------------------------------------
 data_gravidez <- readxl::read_xlsx("bases/caderno-09-gravidez-adolescencia.xlsx", 
                                  sheet = "Anexo 02") %>% 
   slice(2:n()) %>% 
@@ -35,8 +36,34 @@ data_gravidez_tratado <-
   sf::st_as_sf()
 
 
+# IDEB covariável ---------------------------------------------------------
+
+anos_iniciais <- readxl::read_xlsx("bases/ideb/divulgacao_anos_iniciais_municipios_2021.xlsx") |> 
+  slice(9:n()) |> 
+  janitor::row_to_names(1) |> 
+  janitor::clean_names() |> 
+  filter(sg_uf == "ES")
+
+anos_finais <- readxl::read_xlsx("bases/ideb/divulgacao_anos_finais_municipios_2021.xlsx") |> 
+  slice(9:n()) |> 
+  janitor::row_to_names(1) |> 
+  janitor::clean_names() |> 
+  filter(sg_uf == "ES")
+
+ensino_medio <- readxl::read_xlsx("bases/ideb/divulgacao_ensino_medio_municipios_2021.xlsx") |> 
+  slice(9:n()) |> 
+  janitor::row_to_names(1) |> 
+  janitor::clean_names() |> 
+  filter(sg_uf == "ES")
+
+
+# IDF ---------------------------------------------------------------------
+
+
 
 
 # saidas ------------------------------------------------------------------
 
 data_gravidez_tratado
+
+
