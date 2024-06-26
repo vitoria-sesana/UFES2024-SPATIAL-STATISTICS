@@ -3,7 +3,7 @@ library(spdep)
 source("script/S1_tratamento.R")
 
 # data polígono -----------------------------------------------------------
-ccShape = data_gravidez_tratado
+ccShape = base
 
 # Listas de vizinhança ----------------------------------------------------
 # lista os municípios vizinhos que cada município possui 
