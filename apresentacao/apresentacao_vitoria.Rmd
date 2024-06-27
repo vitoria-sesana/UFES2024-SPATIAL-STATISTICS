@@ -208,12 +208,12 @@ A estatística teste índice moran foi `r test_I[["estimate"]][["Moran I statist
 
 # Índice de moran local
 
-```{r moran4, echo=FALSE, fig.align = 'center', warning=FALSE, message=FALSE, fig.cap="Índice de Moran Local", fig.height=8}
+```{r moran4, echo=FALSE, fig.align = 'center', warning=FALSE, message=FALSE, fig.cap="Índice de Moran Local", fig.height=6}
 
 localmoran <- localmoran(base$casos, ccPesos_vizinhos)
 moran.map <- cbind(base, localmoran)
 
-tmap::tm_shape(moran.map) +
+tmap::tm_shape(moran.map, bbox=tmaptools::bb(base, xlim = c(-42.5,-39.5))) +
   tmap::tm_fill(col = "Ii",
                 style = "quantile",
                 title = "Estatistica de Moran Local")+

@@ -135,8 +135,19 @@ bb <- st_as_sfc(st_bbox(c(xmin = sf_small_cent[1] - (lon_diff / 2),
   st_as_sf(crs = st_crs(sf_small))
 
 
-tmap::tm_shape(moran.map) +
+tmap::tm_shape(moran.map, bbox=tmaptools::bb(base, xlim = c(-42.5,-39.5))) +
   tmap::tm_fill(col = "Ii",
                 style = "quantile",
                 title = "Estatistica de Moran Local")+
   tmap::tm_polygons()
+
+
+require(tmap)
+## load shapes
+data(NLD_muni)
+data(World)
+
+NLD_muni
+## get bounding box (similar to sp's function bbox)
+tmaptools::bb(base, xlim = c(-41, -39))
+xlim = c())
