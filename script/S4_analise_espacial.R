@@ -74,3 +74,5 @@ n <- length(Sy0_nb)
 uncorr_x <- rnorm(n)
 rho <- 0.5
 autocorr_x <- invIrW(Sy0_lw_W, rho) %*% uncorr_x
+
+pagedown::chrome_print("apresentacao/apresentacao_vitoria.html",output="apresentacao/apresentacao_vitoria.pdf")
