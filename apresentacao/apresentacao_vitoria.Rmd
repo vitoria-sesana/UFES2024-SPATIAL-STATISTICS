@@ -97,7 +97,9 @@ class: inverse, center, middle
 ggplot() +
   geom_sf(data = base, aes(fill = casos), color=grDevices::grey(.1)) +
   labs(title = "") +
-  scale_fill_distiller(palette = "Reds", direction = 1, 
+  scale_fill_fermenter(palette = "Reds", 
+                       direction = 1, 
+                       limits = c(0, 800)
                        #labels = scales::percent()
   ) +
   scale_x_continuous(limits = c(-42, -39.7)) +
