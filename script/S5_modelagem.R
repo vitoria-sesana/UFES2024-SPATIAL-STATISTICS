@@ -11,7 +11,7 @@ library(spatialreg)
 attach(base)
 m1_idf <- lagsarlm(log(casos) ~ d1 + d2 + d3 + d4 + d5 + d6, data = base, listw = ccPesos_vizinhos, zero.policy = TRUE)
 m2_ideb <- lagsarlm(log(casos) ~ ideb_f1 + ideb_f2 + ideb_em, data = base, listw = ccPesos_vizinhos, zero.policy = TRUE)
-m3_all <- lagsarlm(log(casos) ~ d1 + d2 + d3 + d4 + d5 + d6 + ideb_f1 + ideb_f2 +ideb_em, data = base, listw = ccPesos_vizinhos, zero.policy = TRUE)
+m3_all <- lagsarlm(casos ~ d1 + d2 + d3 + d4 + d5 + d6 + ideb_f1 + ideb_f2 +ideb_em, data = base, listw = ccPesos_vizinhos, zero.policy = TRUE)
 
 ## 
 m4 <- spatialreg::lagsarlm(casos ~ idf + ideb_f1 + ideb_f2 +ideb_em,
