@@ -77,7 +77,7 @@ base_ideb_em <- readxl::read_xlsx("bases/ideb/divulgacao_ensino_medio_municipios
 
 base_idf <- read.csv("bases/idf_municipio_es_DEZ2022.xlsx - base_de_dados.csv") %>% 
   # filter(COD_idf == "idf") %>% 
-  filter(COD_idf %in% c("d1", "d2", "d3", "d4", "d5", "d6")) %>% 
+  filter(COD_idf %in% c("idf", "d1", "d2", "d3", "d4", "d5", "d6")) %>% 
   mutate(indice = as.numeric(stringr::str_replace(indice, ",", ".")),
          cod_ibge = as.character(cod_ibge)
          ) %>% 

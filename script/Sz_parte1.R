@@ -10,11 +10,17 @@ library(tmaptools)
 library(ggspatial)
 
 
-base_shape <- sf::st_read('../bases/malha_municipal_ES_2022/ES_Municipios_2022.shp') %>%
+# base --------------------------------------------------------------------
+base_shape <- sf::st_read('bases/malha_municipal_ES_2022/ES_Municipios_2022.shp') %>%
   mutate(CD_MUN = as.numeric(CD_MUN))
-base <- read.table("../bases/base.txt", sep = ";") %>%
+base <- read.table("bases/base.txt", sep = ";") %>%
   left_join(base_shape, "CD_MUN") %>%
   sf::st_as_sf()
+
+
+# gráficos ----------------------------------------------------------------
+
+hist(x = base$casos)
 ggplot() +
   geom_sf(data = base, aes(fill = casos), color=grDevices::grey(.1)) +
   labs(title = "") +
@@ -51,6 +57,8 @@ corrplot::corrplot(
   col = corrplot::COL2('PuOr', 10),
   addgrid.col = "black",
 )
+
+
 # Listas de vizinhança ----------------------------------------------------
 # lista os municípios vizinhos que cada município possui
 # a partir de uma lista de polígonos
@@ -65,6 +73,8 @@ ccPesos_vizinhos$weights[[78]]
 ccMatriz_vizinhanca = nb2mat(ccVizinhos, style='W')
 # Soma dos pesos da matriz de vizinhaça -----------------------------------
 ccSoma_pesos_totais = rowSums(ccMatriz_vizinhanca)
+
+
 # índice de moran ---------------------------------------------------------
 lag_espacial <- spdep::lag.listw(ccPesos_vizinhos, base$casos)
 plot(lag_espacial ~ base$casos, pch=16, asp=1, xlab ="Quantidade de casos", ylab = "Lag espacial")
@@ -72,9 +82,33 @@ abline(lm(lag_espacial ~ base$casos), col="blue")
 test_I <- moran.test(base$casos, ccPesos_vizinhos,
                      alternative="greater",
                      zero.policy=TRUE)
+
+morpermCRIME <- moran.mc(base$casos,ccPesos_vizinhos,99); morpermCRIME
+morp <- morpermCRIME$res[1:length(morpermCRIME$res)-1]
+zz <- density(morp)
+
+plot(zz,main="Moran’s I Permutation Test",
+     xlab="Reference Distribution",xlim=c(-0.3,0.7),
+     ylim=c(0,8),lwd=2,col=2)
+hist(morp,freq=F,add=T)
+abline(v=morpermCRIME$statistic,lwd=2,col=4)
+
+
+spdep::moran.plot(base$casos, 
+                  ccPesos_vizinhos, 
+                  zero.policy = TRUE, 
+                  xlab = 'Casos de nascidos vivos de meninas menores de 19 anos',
+                  ylab = 'Lag Espacial',
+                  pch=20)
+
+
 # test_I
 # test_I$p.value
 # test_I[["estimate"]][["Moran I statistic"]]
+
+
+# indice de moran local ---------------------------------------------------
+
 localmoran <- localmoran(base$casos, ccPesos_vizinhos)
 moran.map <- cbind(base, localmoran)
 tmap::tm_shape(moran.map, bbox=tmaptools::bb(base, xlim = c(-42.5,-39.5))) +
@@ -82,4 +116,5 @@ tmap::tm_shape(moran.map, bbox=tmaptools::bb(base, xlim = c(-42.5,-39.5))) +
                 style = "quantile",
                 title = "Estatistica de Moran Local")+
   tmap::tm_polygons()
-savehistory("C:/Users/Vitoria/Documents/Vitoria/faculdade/faculdade_disciplinas/semestre_atual/9. Estatística Espacial/UFES2024-SPATIAL-STATISTICS/aaaa.Rhistory")
+# savehistory("C:/Users/Vitoria/Documents/Vitoria/faculdade/faculdade_disciplinas/semestre_atual/9. Estatística Espacial/UFES2024-SPATIAL-STATISTICS/aaaa.Rhistory")
+
